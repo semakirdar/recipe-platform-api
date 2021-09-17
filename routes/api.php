@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auths\LoginController;
 use App\Http\Controllers\Auths\LogoutController;
 use App\Http\Controllers\Auths\ProfileController;
+use App\Http\Controllers\Auths\RecipeController;
 use App\Http\Controllers\Auths\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [LogoutController::class, 'logout']);
     Route::post('/profile', [ProfileController::class, 'update']);
+    Route::post('/recipe', [RecipeController::class, 'store']);
 });
 
 Route::post('/register', [RegisterController::class, 'register']);
