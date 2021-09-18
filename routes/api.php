@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auths\FollowController;
 use App\Http\Controllers\Auths\LoginController;
 use App\Http\Controllers\Auths\LogoutController;
 use App\Http\Controllers\Auths\ProfileController;
@@ -27,6 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/recipes/{id}', [RecipeController::class, 'delete']);
     Route::get('/recipes/{id}', [RecipeController::class, 'show']);
     Route::get('/recipes', [RecipeController::class, 'index']);
+    Route::post('/follow', [FollowController::class, 'follow']);
+
 });
 
 Route::post('/register', [RegisterController::class, 'register']);
