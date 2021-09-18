@@ -22,10 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [LogoutController::class, 'logout']);
     Route::post('/profile', [ProfileController::class, 'update']);
-    Route::post('/recipe', [RecipeController::class, 'store']);
-    Route::post('/recipe/{id}', [RecipeController::class, 'update']);
+    Route::post('/recipes', [RecipeController::class, 'store']);
+    Route::post('/recipes/{id}', [RecipeController::class, 'update']);
     Route::delete('/recipes/{id}', [RecipeController::class, 'delete']);
-    Route::get('/recipe/{id}', [RecipeController::class, 'show']);
+    Route::get('/recipes/{id}', [RecipeController::class, 'show']);
+    Route::get('/recipes', [RecipeController::class, 'index']);
 });
 
 Route::post('/register', [RegisterController::class, 'register']);

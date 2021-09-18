@@ -81,4 +81,14 @@ class RecipeController extends Controller
             'data' => $recipe
         ]);
     }
+
+    public function index()
+    {
+        $recipe = Recipe::query()->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $recipe
+        ]);
+    }
 }
