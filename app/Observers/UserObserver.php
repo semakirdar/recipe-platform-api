@@ -19,7 +19,7 @@ class UserObserver
             'user_id' => $user->id,
             'bio' => '-',
             'website' => '-',
-            'location' => '-'
+            'location' => '-',
         ]);
     }
 

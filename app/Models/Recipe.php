@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Recipe extends Model
+class Recipe extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
         'category_id',
@@ -15,6 +17,7 @@ class Recipe extends Model
         'title',
         'body'
     ];
+    protected $appends = ['avatar'];
 
     public function category()
     {
@@ -24,5 +27,12 @@ class Recipe extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+
+
+    protected function getAvatarAttribute()
+    {
+        return $this->getFirstMediaUrl();
     }
 }

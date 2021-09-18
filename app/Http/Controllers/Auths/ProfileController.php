@@ -19,6 +19,13 @@ class ProfileController extends Controller
             'location' => $request->location
         ]);
 
+        if ($request->has('avatar') && !empty($request->avatar)) {
+            foreach ($profile->getMedia() as $media) {
+                $media->delete();
+            }
+            $profile->addMediaFromRequest('avatar')->tomediaCollection();
+        }
+
         return response()->json([
             'success' => true,
             'error' => 'Your profile updated'

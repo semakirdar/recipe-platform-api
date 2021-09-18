@@ -18,6 +18,9 @@ class RecipeController extends Controller
             'category_id' => $request->category_id,
             'user_id' => auth()->user()->id
         ]);
+
+        $recipe->addMediaFromRequest('avatar')->toMediaCollection();
+
         return response()->json([
             'success' => true,
             'error' => 'recipe successfully created'
@@ -38,6 +41,13 @@ class RecipeController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
+        if ($request->has('avatar') && !empty($request->avatar)) {
+            foreach ($recipe->getMedia() as $media) {
+                $media->delete();
+            }
+            $recipe->addMediaFromRequest('avatar')->tomediaCollection();
+        }
+
         return response()->json([
             'success' => true,
             'error' => 'recipe successfully updated'
@@ -57,11 +67,14 @@ class RecipeController extends Controller
             'success' => true,
             'error' => 'recipe successfully deleted'
         ]);
+
+        $media->$recipe->getFirstMedia();
+        $media->delete();
     }
 
     public function show($id)
     {
-        $recipe = Recipe::query()->where('id', $id)->first();
+        $recipe = Recipe::query()->with('user')->where('id', $id)->first();
 
         return response()->json([
             'success' => true,
