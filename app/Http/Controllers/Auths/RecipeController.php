@@ -58,4 +58,14 @@ class RecipeController extends Controller
             'error' => 'recipe successfully deleted'
         ]);
     }
+
+    public function show($id)
+    {
+        $recipe = Recipe::query()->where('id', $id)->first();
+
+        return response()->json([
+            'success' => true,
+            'data' => $recipe
+        ]);
+    }
 }

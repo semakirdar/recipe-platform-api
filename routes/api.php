@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/recipe', [RecipeController::class, 'store']);
     Route::post('/recipe/{id}', [RecipeController::class, 'update']);
     Route::delete('/recipes/{id}', [RecipeController::class, 'delete']);
+    Route::get('/recipe/{id}', [RecipeController::class, 'show']);
 });
 
 Route::post('/register', [RegisterController::class, 'register']);
