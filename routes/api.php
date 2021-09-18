@@ -19,10 +19,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function(){
+Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [LogoutController::class, 'logout']);
     Route::post('/profile', [ProfileController::class, 'update']);
     Route::post('/recipe', [RecipeController::class, 'store']);
+    Route::post('/recipe/{id}', [RecipeController::class, 'update']);
+    Route::delete('/recipes/{id}', [RecipeController::class, 'delete']);
 });
 
 Route::post('/register', [RegisterController::class, 'register']);
