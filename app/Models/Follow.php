@@ -14,4 +14,13 @@ class Follow extends Model
         'followed_id'
     ];
 
+    public function followerUser()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    public function followedUser()
+    {
+        return $this->hasOne(User::class, 'id', 'followed_id');
+    }
+
 }

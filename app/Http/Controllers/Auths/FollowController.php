@@ -23,4 +23,15 @@ class FollowController extends Controller
             'error' => 'successfully followed'
         ]);
     }
+
+    public function getFollowers()
+    {
+        $user = Follow::query()
+            ->with(['followerUser'])
+            ->where('followed_id', auth()->user()->id)->get();
+
+      return  response()->json([
+         'data' => $user
+        ]);
+    }
 }
